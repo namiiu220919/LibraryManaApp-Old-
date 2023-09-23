@@ -4,29 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgdoodle"
     tools:context=".Login">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
-        <ImageView
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:src="@drawable/logofpt"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:layout_marginBottom="100dp"/>
-        <EditText
-            android:id="@+id/edUserName"
-            android:layout_width="match_parent"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Tên đăng nhập"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="Tên đăng nhập"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
         <EditText
-            android:id="@+id/edPassword"
+            android:id="@+id/edOldPass"
             android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bgedittext"/>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"/>
+            android:layout_marginTop="10dp"
+            android:text="Mật khẩu"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
+        <EditText
+            android:id="@+id/edNewPass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bgedittext"/>
         <CheckBox
             android:id="@+id/chkRememberPass"
             android:layout_width="wrap_content"
@@ -37,17 +57,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:gravity="center">
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bgbutton"
+                android:layout_margin="2dp"
                 android:text="Đăng nhập"/>
             <Button
                 android:id="@+id/btnCancel"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bgedittext"
+                android:layout_margin="2dp"
                 android:text="Huỷ"/>
         </LinearLayout>
     </LinearLayout>
