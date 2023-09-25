@@ -49,7 +49,7 @@ public class LoaiSachDAO {
     //get data theo id
     public LoaiSach getID(String id){
         String sql ="SELECT * FROM LoaiSach WHERE maLoai=?";
-        List<LoaiSach> list = getData();
+        List<LoaiSach> list = getData(sql);
         return list.get(0);
     }
 
