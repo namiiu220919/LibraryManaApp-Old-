@@ -7,14 +7,14 @@ public class PhieuMuon {
     public String maTT;
     public int maTV;
     public int maSach;
-    public Date ngay;
+    public String ngay;
     public int tienThue;
     public int traSach;
 
     public PhieuMuon() {
     }
 
-    public PhieuMuon(int maPM, String maTT, int maTV, int maSach, Date ngay, int tienThue, int traSach) {
+    public PhieuMuon(int maPM, String maTT, int maTV, int maSach, String ngay, int tienThue, int traSach) {
         this.maPM = maPM;
         this.maTT = maTT;
         this.maTV = maTV;

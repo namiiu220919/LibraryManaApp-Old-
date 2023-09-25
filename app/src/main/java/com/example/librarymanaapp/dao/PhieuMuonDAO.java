@@ -25,7 +25,7 @@ public class PhieuMuonDAO {
         values.put("maTT",obj.maTT);
         values.put("maTV",obj.maTV);
         values.put("maSach",obj.maSach);
-        values.put("ngay", obj.ngay.getTime());
+        values.put("ngay", obj.ngay);
         values.put("tienThue",obj.tienThue);
         values.put("traSach",obj.traSach);
 
@@ -38,7 +38,7 @@ public class PhieuMuonDAO {
         values.put("maTT",obj.maTT);
         values.put("maTV",obj.maTV);
         values.put("maSach",obj.maSach);
-        values.put("ngay", obj.ngay.getTime());
+        values.put("ngay", obj.ngay);
         values.put("tienThue",obj.tienThue);
         values.put("traSach",obj.traSach);
 
@@ -72,7 +72,7 @@ public class PhieuMuonDAO {
             obj.maTT = c.getString(c.getColumnIndex("maTT"));
             obj.maTV = Integer.parseInt(c.getString(c.getColumnIndex("maTV")));
             obj.maSach = Integer.parseInt(c.getString(c.getColumnIndex("maSach")));
-//            obj.ngay = c.getString(c.getColumnIndex("ngay"));
+            obj.ngay = c.getString(c.getColumnIndex("ngay"));
             obj.tienThue = Integer.parseInt(c.getString(c.getColumnIndex("tienThue")));
             obj.traSach = Integer.parseInt(c.getString(c.getColumnIndex("traSach")));
             list.add(obj);

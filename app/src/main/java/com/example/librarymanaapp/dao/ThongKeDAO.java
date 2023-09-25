@@ -24,14 +24,18 @@ public class ThongKeDAO {
         db = dbHelper.getWritableDatabase();
     }
     //thống kê top 10
-//    public List<Top> getTop(){
-//        String sqlTop = "SELECT maSach, count(maSach) as soLuong FROM PhieuMuon GROUP BY maSach ORDER BY soLuong DESC";
-//        List<Top> list = new ArrayList<Top>();
-//        SachDAO sachDao = new SachDAO(context);
-//        Cursor c = db.rawQuery(sqlTop,null);
-//        while (c.moveToNext()){
-//            Top top = new Top();
-//            Sach sach = sachDao.getID
-//        }
-//    }
+    public List<Top> getTop(){
+        String sqlTop = "SELECT maSach, count(maSach) as soLuong FROM PhieuMuon GROUP BY maSach ORDER BY soLuong DESC";
+        List<Top> list = new ArrayList<Top>();
+        SachDAO sachDao = new SachDAO(context);
+        Cursor c = db.rawQuery(sqlTop,null);
+        while (c.moveToNext()){
+            Top top = new Top();
+            Sach sach = sachDao.getID(c.getString(c.getColumnIndex("maSach")));
+            top.tenSach = sach.tenSach;
+            top.soLuong = Integer.parseInt((c.getString(c.getColumnIndex("soLuongw"))));
+            list.add(top);
+        }
+        return list;
+    }
 }
