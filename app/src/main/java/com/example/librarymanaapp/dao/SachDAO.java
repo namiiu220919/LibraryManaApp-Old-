@@ -47,7 +47,7 @@ public class SachDAO {
     //get All data
     public List<Sach> getAll(){
         String sql = "SELECT * FROM Sach";
-        return getAll();
+        return getData(sql);
     }
 
     //get data theo id

@@ -52,7 +52,7 @@ public class PhieuMuonDAO {
     //get All data
     public List<PhieuMuon> getAll(){
         String sql = "SELECT * FROM PhieuMuon";
-        return getAll();
+        return getData(sql);
     }
 
     //get data theo id

@@ -28,9 +28,9 @@ public class ThuThuDAO {
         return db.insert("ThuThu", null, values);
     }
 
-    public int update(ThuThu obj){
+    public int updatePass(ThuThu obj){
         ContentValues values = new ContentValues();
-        values.put("maTT",obj.maTT);
+
         values.put("hoTen",obj.hoTen);
         values.put("matKhau",obj.matKhau);
 
@@ -44,7 +44,7 @@ public class ThuThuDAO {
     //get All data
     public List<ThuThu> getAll(){
         String sql = "SELECT * FROM ThuThu";
-        return getAll();
+        return getData(sql);
     }
 
     //get data theo id
@@ -66,5 +66,15 @@ public class ThuThuDAO {
             list.add(obj);
         }
         return list;
+    }
+
+    //check login
+    public int checkLogin(String id, String password){
+        String sql = "SELECT * FROM ThuThu WHERE maTT=? AND matKhau=?";
+        List<ThuThu> list = getData(sql,id,password);
+        if (list.size() == 0)
+            return -1;
+        return 1;
+
     }
 }

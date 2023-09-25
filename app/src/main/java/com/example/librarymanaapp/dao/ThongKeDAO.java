@@ -25,7 +25,7 @@ public class ThongKeDAO {
     }
     //thống kê top 10
     public List<Top> getTop(){
-        String sqlTop = "SELECT maSach, count(maSach) as soLuong FROM PhieuMuon GROUP BY maSach ORDER BY soLuong DESC";
+        String sqlTop = "SELECT maSach, count(maSach) as soLuong FROM PhieuMuon GROUP BY maSach ORDER BY soLuong DESC LIMIT 10";
         List<Top> list = new ArrayList<Top>();
         SachDAO sachDao = new SachDAO(context);
         Cursor c = db.rawQuery(sqlTop,null);
@@ -33,9 +33,24 @@ public class ThongKeDAO {
             Top top = new Top();
             Sach sach = sachDao.getID(c.getString(c.getColumnIndex("maSach")));
             top.tenSach = sach.tenSach;
-            top.soLuong = Integer.parseInt((c.getString(c.getColumnIndex("soLuongw"))));
+            top.soLuong = Integer.parseInt((c.getString(c.getColumnIndex("soLuong"))));
             list.add(top);
         }
         return list;
+    }
+
+    // thống kê doanh thu
+    public int getDoanhThu(String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM(tienThue) as doanhThu FROM PhieuMuon WHERE ngay BETWEEN ? AND ?";
+        List<Integer> list = new ArrayList<Integer>();
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
+        while (c.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
     }
 }

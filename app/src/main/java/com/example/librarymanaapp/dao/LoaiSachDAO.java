@@ -43,7 +43,7 @@ public class LoaiSachDAO {
     //get All data
     public List<LoaiSach> getAll(){
         String sql = "SELECT * FROM LoaiSach";
-        return getAll();
+        return getData(sql);
     }
 
     //get data theo id
@@ -54,7 +54,7 @@ public class LoaiSachDAO {
     }
 
     //get data nhiều tham số
-    private List<LoaiSach> getData(){
+    private List<LoaiSach> getData(String sql,String...selectionArgs){
         ArrayList<LoaiSach> list = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM LoaiSach",null);
         while (c.moveToNext()){

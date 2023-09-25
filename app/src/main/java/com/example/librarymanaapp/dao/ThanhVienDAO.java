@@ -30,7 +30,7 @@ public class ThanhVienDAO {
         return db.insert("ThanhVien", null, values);
     }
 
-    public int update(ThanhVien obj){
+    public int updatePass(ThanhVien obj){
         ContentValues values = new ContentValues();
         values.put("hoTen",obj.hoTen);
         values.put("namSinh",obj.namSinh);
@@ -45,18 +45,18 @@ public class ThanhVienDAO {
     //get All data
     public List<ThanhVien> getAll(){
         String sql = "SELECT * FROM ThanhVien";
-        return getAll();
+        return getData(sql);
     }
 
     //get data theo id
     public ThanhVien getID(String id){
         String sql ="SELECT * FROM ThanhVien WHERE maTV=?";
-        List<ThanhVien> list = getData();
+        List<ThanhVien> list = getData(sql,id);
         return list.get(0);
     }
 
     //get data nhiều tham số
-    private List<ThanhVien> getData(){
+    private List<ThanhVien> getData(String sql,String...selectionArgs){
         ArrayList<ThanhVien> list = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM ThanhVien",null);
         while (c.moveToNext()){
