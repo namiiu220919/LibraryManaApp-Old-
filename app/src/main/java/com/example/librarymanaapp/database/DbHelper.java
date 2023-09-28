@@ -36,7 +36,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "namSinh TEXT NOT NULL)";
         db.execSQL(createTableThanhVien);
 
-        String dataThanhVien = "insert into ThanhVien values" +
+        String dataThanhVien = "insert into ThanhVien(hoTen, namSinh) values" +
                 "('Nguyễn Phương Nam','2004')," +
                 "('Lưu Tuấn Quỳnh','2005')," +
                 "('Đào Văn Mạnh','2003')," +
@@ -49,7 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(createTableLoaiSach);
 
-        String dataLoaiSach = "insert into LoaiSach values" +
+        String dataLoaiSach = "insert into LoaiSach(tenLoai) values" +
                 "('IT')," +
                 "('Toán')," +
                 "('Marketing')," +
@@ -64,7 +64,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maLoai INTEGER REFERENCES LoaiSach(maLoai))";
         db.execSQL(createTableSach);
 
-        String dataSach = "insert into ThuThu values" +
+        String dataSach = "insert into Sach(tenSach,giaThue,maLoai) values" +
                 "('JS Cơ bản',10000,1)," +
                 "('Toán Nâng Cao',12000,2)," +
                 "('Tâm lý khách hàng',10000,3)," +
@@ -82,7 +82,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "traSach INTEGER NOT NULL)";
         db.execSQL(createTablePhieuMuon);
 
-        String dataPhieuMuon = "insert into PhieuMuon values" +
+        String dataPhieuMuon = "insert into PhieuMuon(maTT,maTV,maSach,tienThue,ngay,traSach)values" +
                 "('TT01',1,1,10000,'20/9/2023',1)," +
                 "('TT01',2,2,12000,'20/9/2023',2)," +
                 "('TT02',3,3,10000,'20/9/2023',1)," +

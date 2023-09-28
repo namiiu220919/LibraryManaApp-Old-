@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         //Tạo database
         DemoDB demoDB = new DemoDB(getApplicationContext());
 
-//        drawer = findViewById(R.id.drawer_layout);
-//        toolbar = findViewById(R.id.toolbar);
-//        //set toolbar thay thế cho actionbar
-//        setSupportActionBar(toolbar);
-//        ActionBar ab = getSupportActionBar();
+        drawer = findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar);
+        //set toolbar thay thế cho actionbar
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
 //        ab.setHomeAsUpIndicator(R.drawable.menu);
 //        ab.setDisplayHomeAsUpEnabled(true);
 //        //dùng fragment_PhieuMuon làm home
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //            drawer.closeDrawers();
 //            return false;
-//
+
 //        });
     }
 
