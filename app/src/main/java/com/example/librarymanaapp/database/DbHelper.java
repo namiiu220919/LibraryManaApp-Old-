@@ -22,10 +22,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 "matKhau TEXT NOT NULL)";
         db.execSQL(createTableThuThu);
 
-//        String data = "insert into ThuThu values('TT01','ThanhNguyen01','1234')," +
-//                "('TT02','LuanNguyen02','1234')," +
-//                "('TT03','TuanNguyen03','1234')";
-//        db.execSQL(data);
+        String dataThuThu = "insert into ThuThu values" +
+                "('admin','Adminitrator','admin')," +
+                "('TT01','Nguyễn Văn Đông','123456')," +
+                "('TT02','Nguyễn Thị Hường','123456')," +
+                "('TT03','Nguyễn Đông Nhi','123456')";
+        db.execSQL(dataThuThu);
 
         //Tạo bảng ThanhVien
         String createTableThanhVien="create table ThanhVien (" +
@@ -34,11 +36,25 @@ public class DbHelper extends SQLiteOpenHelper {
                 "namSinh TEXT NOT NULL)";
         db.execSQL(createTableThanhVien);
 
+        String dataThanhVien = "insert into ThanhVien values" +
+                "('Nguyễn Phương Nam','2004')," +
+                "('Lưu Tuấn Quỳnh','2005')," +
+                "('Đào Văn Mạnh','2003')," +
+                "('Hoàng Quang Vinh','2001')";
+        db.execSQL(dataThanhVien);
+
         //Tạo bảng LoaiSach
         String createTableLoaiSach="create table LoaiSach (" +
                 "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(createTableLoaiSach);
+
+        String dataLoaiSach = "insert into LoaiSach values" +
+                "('IT')," +
+                "('Toán')," +
+                "('Marketing')," +
+                "('Logistic')";
+        db.execSQL(dataLoaiSach);
 
         //Tạo bảng Sach
         String createTableSach="create table Sach (" +
@@ -47,6 +63,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "giaThue INTEGER NOT NULL," +
                 "maLoai INTEGER REFERENCES LoaiSach(maLoai))";
         db.execSQL(createTableSach);
+
+        String dataSach = "insert into ThuThu values" +
+                "('JS Cơ bản',10000,1)," +
+                "('Toán Nâng Cao',12000,2)," +
+                "('Tâm lý khách hàng',10000,3)," +
+                "('Vận chuyển đường biển',11000,4)";
+        db.execSQL(dataSach);
 
         //Tạo bảng PhieuMuon
         String createTablePhieuMuon ="create table PhieuMuon (" +
@@ -58,6 +81,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "ngay TEXT NOT NULL," +
                 "traSach INTEGER NOT NULL)";
         db.execSQL(createTablePhieuMuon);
+
+        String dataPhieuMuon = "insert into PhieuMuon values" +
+                "('TT01',1,1,10000,'20/9/2023',1)," +
+                "('TT01',2,2,12000,'20/9/2023',2)," +
+                "('TT02',3,3,10000,'20/9/2023',1)," +
+                "('TT03',4,4,11000,'20/9/2023',2)";
+        db.execSQL(dataPhieuMuon);
     }
 
 
