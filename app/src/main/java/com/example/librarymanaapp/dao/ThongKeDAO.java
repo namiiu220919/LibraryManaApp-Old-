@@ -1,5 +1,6 @@
 package com.example.librarymanaapp.dao;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,6 +41,7 @@ public class ThongKeDAO {
     }
 
     // thống kê doanh thu
+    @SuppressLint("Range")
     public int getDoanhThu(String tuNgay, String denNgay) {
         String sqlDoanhThu = "SELECT SUM(tienThue) as doanhThu FROM PhieuMuon WHERE ngay BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<Integer>();

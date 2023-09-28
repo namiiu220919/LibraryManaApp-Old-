@@ -1,5 +1,6 @@
 package com.example.librarymanaapp.dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -63,6 +64,7 @@ public class PhieuMuonDAO {
     }
 
     //get data nhiều tham số
+    @SuppressLint("Range")
     private List<PhieuMuon> getData(String sql, String...selectionArgs) {
         ArrayList<PhieuMuon> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql, selectionArgs);

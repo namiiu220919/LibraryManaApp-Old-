@@ -1,5 +1,6 @@
 package com.example.librarymanaapp.dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -54,7 +55,8 @@ public class LoaiSachDAO {
     }
 
     //get data nhiều tham số
-    private List<LoaiSach> getData(String sql,String...selectionArgs){
+    @SuppressLint("Range")
+    private List<LoaiSach> getData(String sql, String...selectionArgs){
         ArrayList<LoaiSach> list = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM LoaiSach",null);
         while (c.moveToNext()){

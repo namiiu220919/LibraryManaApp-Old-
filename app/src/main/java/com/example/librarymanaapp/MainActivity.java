@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.librarymanaapp.dao.DemoDB;
 import com.example.librarymanaapp.dao.ThuThuDAO;
 import com.example.librarymanaapp.fragment.frgAddUser;
 import com.example.librarymanaapp.fragment.frgChangePass;
@@ -42,98 +43,100 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Tạo database
+        DemoDB demoDB = new DemoDB(getApplicationContext());
 
-        drawer = findViewById(R.id.drawer_layout);
-        toolbar = findViewById(R.id.toolbar);
-        //set toolbar thay thế cho actionbar
-        setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-        //dùng fragment_PhieuMuon làm home
-        FragmentManager manager = getSupportFragmentManager();
-        frgPhieuMuon frgPM = new frgPhieuMuon();
-        manager.beginTransaction()
-                .replace(R.id.flContent,frgPM)
-                .commit();
-
-        NavigationView nv = findViewById(R.id.nvView);
-        //show user in header
-        mHeaderView = nv.getHeaderView(0);
-        edUser = mHeaderView.findViewById(R.id.tvUser);
-        Intent i = getIntent();
-        String user = i .getStringExtra("user");
-        thuThuDAO = new ThuThuDAO(this);
-        ThuThu thuThu = thuThuDAO.getID(user);
-        String username = thuThu.hoTen;
-        edUser.setText("Welcome" + username);
-
-        //admin có quyền add user
-        if(user.equalsIgnoreCase("admin")){
-            nv.getMenu().findItem(R.id.sub_AddUser).setVisible(true);
-        }
-        //Điều hướng navigation
-        nv.setNavigationItemSelectedListener((item) -> {
-            FragmentManager manager1 = getSupportFragmentManager();
-            switch (item.getItemId()){
-                case R.id.nav_PhieuMuon:
-                    setTitle("Quản lý Phiếu mượn");
-                    frgPhieuMuon frgPhieuMuon = new frgPhieuMuon();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent,frgPhieuMuon)
-                            .commit();
-                    break;
-                case R.id.nav_LoaiSach:
-                    setTitle("Quản lý Loại Sách");
-                    frgLoaiSach frgLoaiSach = new frgLoaiSach();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent,frgLoaiSach)
-                            .commit();
-                    break;
-                case R.id.nav_Sach:
-                    setTitle("Quản lý Sách");
-                    frgSach frgSach = new frgSach();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent,frgSach)
-                            .commit();
-                    break;
-                case R.id.nav_ThanhVien:
-                    setTitle("Quản lý phiêu mượn");
-                    frgThanhVien  frgThanhVien = new frgThanhVien();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent, frgThanhVien)
-                            .commit();
-                    break;
-                case R.id.sub_DoanhThu:
-                    setTitle("Thống kê doanh thu");
-                    frgDoanhThu frgDoanhThu = new frgDoanhThu();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent, frgDoanhThu)
-                            .commit();
-                    break;
-                case R.id.sub_AddUser:
-                    setTitle("Thêm người dùng");
-                    frgAddUser frgAddUser = new frgAddUser();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent, frgAddUser)
-                            .commit();
-                    break;
-                case R.id.sub_Pass:
-                    setTitle("Thay đổi mật khẩu");
-                    frgChangePass frgChangePass = new frgChangePass();
-                    manager1.beginTransaction()
-                            .replace(R.id.flContent, frgChangePass)
-                            .commit();
-                    break;
-                case R.id.sub_Logout:
-                    startActivity(new Intent(getApplicationContext(),Login.class));
-                    finish();
-                    break;
-            }
-            drawer.closeDrawers();
-            return false;
-
-        });
+//        drawer = findViewById(R.id.drawer_layout);
+//        toolbar = findViewById(R.id.toolbar);
+//        //set toolbar thay thế cho actionbar
+//        setSupportActionBar(toolbar);
+//        ActionBar ab = getSupportActionBar();
+//        ab.setHomeAsUpIndicator(R.drawable.menu);
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        //dùng fragment_PhieuMuon làm home
+//        FragmentManager manager = getSupportFragmentManager();
+//        frgPhieuMuon frgPM = new frgPhieuMuon();
+//        manager.beginTransaction()
+//                .replace(R.id.flContent,frgPM)
+//                .commit();
+//
+//        NavigationView nv = findViewById(R.id.nvView);
+//        //show user in header
+//        mHeaderView = nv.getHeaderView(0);
+//        edUser = mHeaderView.findViewById(R.id.tvUser);
+//        Intent i = getIntent();
+//        String user = i .getStringExtra("user");
+//        thuThuDAO = new ThuThuDAO(this);
+//        ThuThu thuThu = thuThuDAO.getID(user);
+//        String username = thuThu.hoTen;
+//        edUser.setText("Welcome" + username);
+//
+//        //admin có quyền add user
+//        if(user.equalsIgnoreCase("admin")){
+//            nv.getMenu().findItem(R.id.sub_AddUser).setVisible(true);
+//        }
+//        //Điều hướng navigation
+//        nv.setNavigationItemSelectedListener((item) -> {
+//            FragmentManager manager1 = getSupportFragmentManager();
+//            switch (item.getItemId()){
+//                case R.id.nav_PhieuMuon:
+//                    setTitle("Quản lý Phiếu mượn");
+//                    frgPhieuMuon frgPhieuMuon = new frgPhieuMuon();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent,frgPhieuMuon)
+//                            .commit();
+//                    break;
+//                case R.id.nav_LoaiSach:
+//                    setTitle("Quản lý Loại Sách");
+//                    frgLoaiSach frgLoaiSach = new frgLoaiSach();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent,frgLoaiSach)
+//                            .commit();
+//                    break;
+//                case R.id.nav_Sach:
+//                    setTitle("Quản lý Sách");
+//                    frgSach frgSach = new frgSach();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent,frgSach)
+//                            .commit();
+//                    break;
+//                case R.id.nav_ThanhVien:
+//                    setTitle("Quản lý phiêu mượn");
+//                    frgThanhVien  frgThanhVien = new frgThanhVien();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent, frgThanhVien)
+//                            .commit();
+//                    break;
+//                case R.id.sub_DoanhThu:
+//                    setTitle("Thống kê doanh thu");
+//                    frgDoanhThu frgDoanhThu = new frgDoanhThu();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent, frgDoanhThu)
+//                            .commit();
+//                    break;
+//                case R.id.sub_AddUser:
+//                    setTitle("Thêm người dùng");
+//                    frgAddUser frgAddUser = new frgAddUser();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent, frgAddUser)
+//                            .commit();
+//                    break;
+//                case R.id.sub_Pass:
+//                    setTitle("Thay đổi mật khẩu");
+//                    frgChangePass frgChangePass = new frgChangePass();
+//                    manager1.beginTransaction()
+//                            .replace(R.id.flContent, frgChangePass)
+//                            .commit();
+//                    break;
+//                case R.id.sub_Logout:
+//                    startActivity(new Intent(getApplicationContext(),Login.class));
+//                    finish();
+//                    break;
+//            }
+//            drawer.closeDrawers();
+//            return false;
+//
+//        });
     }
 
     @Override

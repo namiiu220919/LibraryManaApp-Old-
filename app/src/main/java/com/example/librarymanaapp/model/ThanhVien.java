@@ -13,4 +13,13 @@ public class ThanhVien {
         this.hoTen = hoTen;
         this.namSinh = namSinh;
     }
+
+    @Override
+    public String toString() {
+        return "ThanhVien{" +
+                "maTV=" + maTV +
+                ", hoTen='" + hoTen + '\'' +
+                ", namSinh='" + namSinh + '\'' +
+                '}';
+    }
 }

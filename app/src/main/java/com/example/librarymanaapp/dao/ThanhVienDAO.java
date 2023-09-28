@@ -2,6 +2,7 @@ package com.example.librarymanaapp.dao;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -56,7 +57,8 @@ public class ThanhVienDAO {
     }
 
     //get data nhiều tham số
-    private List<ThanhVien> getData(String sql,String...selectionArgs){
+    @SuppressLint("Range")
+    private List<ThanhVien> getData(String sql, String...selectionArgs){
         ArrayList<ThanhVien> list = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM ThanhVien",null);
         while (c.moveToNext()){
@@ -66,7 +68,6 @@ public class ThanhVienDAO {
             obj.namSinh=c.getString(c.getColumnIndex("namSinh"));
             list.add(obj);
         }
-
         return list;
     }
 }
