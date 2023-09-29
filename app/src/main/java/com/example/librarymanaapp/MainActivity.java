@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Tạo database
         DemoDB demoDB = new DemoDB(getApplicationContext());
-
+        
         drawer = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         //set toolbar thay thế cho actionbar
