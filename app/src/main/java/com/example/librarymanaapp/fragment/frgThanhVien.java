@@ -1,5 +1,7 @@
 package com.example.librarymanaapp.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,60 +9,67 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.librarymanaapp.R;
+import com.example.librarymanaapp.adapter.ThanhVienAdapter;
+import com.example.librarymanaapp.dao.ThanhVienDAO;
+import com.example.librarymanaapp.model.ThanhVien;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link frgThanhVien#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class frgThanhVien extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ListView lstTV;
+    ArrayList<ThanhVien> list;
+    static ThanhVienDAO dao;
+    ThanhVienAdapter adapter;
+    ThanhVien item;
 
     public frgThanhVien() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment frgThanhVien.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static frgThanhVien newInstance(String param1, String param2) {
-        frgThanhVien fragment = new frgThanhVien();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_thanh_vien, container, false);
+        View v = inflater.inflate(R.layout.fragment_thanh_vien, container, false);
+        lstTV = v.findViewById(R.id.lstThanhVien);
+        dao = new ThanhVienDAO(getActivity());
+        list = (ArrayList<ThanhVien>) dao.getAll();
+        adapter = new ThanhVienAdapter(getActivity(),list);
+        lstTV.setAdapter(adapter);
+        return v;
+    }
+    void capnhatLst(){
+        list = (ArrayList<ThanhVien>) dao.getAll();
+        adapter = new ThanhVienAdapter(getActivity(),list);
+        lstTV.setAdapter(adapter);
+    }
+
+    public void xoa(final String Id){
+        //sử dụng alert
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Delete");
+        builder.setMessage("Chắc chắn xoá?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int id) {
+                dao.delete(Id);
+                capnhatLst();
+                dialogInterface.cancel();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        builder.show();
     }
 }

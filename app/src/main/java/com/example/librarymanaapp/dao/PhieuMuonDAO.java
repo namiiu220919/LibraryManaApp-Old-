@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.librarymanaapp.database.DbHelper;
 import com.example.librarymanaapp.model.PhieuMuon;
@@ -78,6 +79,7 @@ public class PhieuMuonDAO {
             obj.tienThue = Integer.parseInt(c.getString(c.getColumnIndex("tienThue")));
             obj.traSach = Integer.parseInt(c.getString(c.getColumnIndex("traSach")));
             list.add(obj);
+            Log.i("//======",obj.toString());
         }
         return list;
     }

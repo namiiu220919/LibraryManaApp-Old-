@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.librarymanaapp.database.DbHelper;
 import com.example.librarymanaapp.model.ThanhVien;
@@ -19,13 +20,12 @@ public class ThuThuDAO {
         DbHelper dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
-
+//
     public long insert (ThuThu obj){
         ContentValues values = new ContentValues();
         values.put("maTT",obj.maTT);
         values.put("hoTen",obj.hoTen);
         values.put("matKhau",obj.matKhau);
-
         return db.insert("ThuThu", null, values);
     }
 
@@ -62,9 +62,10 @@ public class ThuThuDAO {
         Cursor c = db.rawQuery(sql, selectionArgs);
         while (c.moveToNext()) {
             ThuThu obj = new ThuThu();
-            obj.maTT = c.getString(c.getColumnIndex("maTV"));
+            obj.maTT = c.getString(c.getColumnIndex("maTT"));
             obj.hoTen = c.getString(c.getColumnIndex("hoTen"));
             obj.matKhau = c.getString(c.getColumnIndex("matKhau"));
+            Log.i("//======",obj.toString());
             list.add(obj);
         }
         return list;

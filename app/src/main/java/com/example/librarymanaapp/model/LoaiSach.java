@@ -11,4 +11,12 @@ public class LoaiSach {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }
+
+    @Override
+    public String toString() {
+        return "LoaiSach{" +
+                "maLoai=" + maLoai +
+                ", tenLoai='" + tenLoai + '\'' +
+                '}';
+    }
 }

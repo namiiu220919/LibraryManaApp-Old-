@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.librarymanaapp.database.DbHelper;
 import com.example.librarymanaapp.model.LoaiSach;
@@ -63,6 +64,7 @@ public class LoaiSachDAO {
             LoaiSach obj = new LoaiSach();
             obj.maLoai=Integer.parseInt(c.getString(c.getColumnIndex("maLoai")));
             obj.tenLoai=c.getString(c.getColumnIndex("tenLoai"));
+            Log.i("//======",obj.toString());
             list.add(obj);
         }
 

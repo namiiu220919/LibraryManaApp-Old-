@@ -15,4 +15,14 @@ public class Sach {
         this.giaThue = giaThue;
         this.maLoai = maLoai;
     }
+
+    @Override
+    public String toString() {
+        return "Sach{" +
+                "maSach=" + maSach +
+                ", tenSach='" + tenSach + '\'' +
+                ", giaThue=" + giaThue +
+                ", maLoai=" + maLoai +
+                '}';
+    }
 }

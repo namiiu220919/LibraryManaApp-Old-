@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.librarymanaapp.database.DbHelper;
 import com.example.librarymanaapp.model.Sach;
@@ -70,6 +71,7 @@ public class SachDAO {
             obj.giaThue = Integer.parseInt(c.getString(c.getColumnIndex("giaThue")));
             obj.maLoai = Integer.parseInt(c.getString(c.getColumnIndex("maLoai")));
             list.add(obj);
+            Log.i("//======",obj.toString());
         }
         return list;
     }

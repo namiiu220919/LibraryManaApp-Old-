@@ -13,4 +13,13 @@ public class ThuThu {
         this.hoTen = hoTen;
         this.matKhau = matKhau;
     }
+
+    @Override
+    public String toString() {
+        return "ThuThu{" +
+                "maTT='" + maTT + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", matKhau='" + matKhau + '\'' +
+                '}';
+    }
 }

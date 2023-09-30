@@ -23,4 +23,17 @@ public class PhieuMuon {
         this.tienThue = tienThue;
         this.traSach = traSach;
     }
+
+    @Override
+    public String toString() {
+        return "PhieuMuon{" +
+                "maPM=" + maPM +
+                ", maTT='" + maTT + '\'' +
+                ", maTV=" + maTV +
+                ", maSach=" + maSach +
+                ", ngay='" + ngay + '\'' +
+                ", tienThue=" + tienThue +
+                ", traSach=" + traSach +
+                '}';
+    }
 }

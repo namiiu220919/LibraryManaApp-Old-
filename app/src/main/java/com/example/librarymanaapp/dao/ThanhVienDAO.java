@@ -31,7 +31,7 @@ public class ThanhVienDAO {
         return db.insert("ThanhVien", null, values);
     }
 
-    public int updatePass(ThanhVien obj){
+    public int update(ThanhVien obj){
         ContentValues values = new ContentValues();
         values.put("hoTen",obj.hoTen);
         values.put("namSinh",obj.namSinh);
@@ -60,12 +60,13 @@ public class ThanhVienDAO {
     @SuppressLint("Range")
     private List<ThanhVien> getData(String sql, String...selectionArgs){
         ArrayList<ThanhVien> list = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM ThanhVien",null);
+        Cursor c = db.rawQuery(sql,selectionArgs);
         while (c.moveToNext()){
             ThanhVien obj = new ThanhVien();
             obj.maTV=Integer.parseInt(c.getString(c.getColumnIndex("maTV")));
             obj.hoTen=c.getString(c.getColumnIndex("hoTen"));
             obj.namSinh=c.getString(c.getColumnIndex("namSinh"));
+            Log.i("//======",obj.toString());
             list.add(obj);
         }
         return list;
